@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 定义: 构造函数的Prototype,有没有出现在对象的proto(隐式原型)上, 对象的__proto__的顶层是Object.prototype
+      // 如果在往上层找 就为null
+      // 测试实例: 判断不了简单数据类型
+      const obj = {};
+      // console.log(obj instanceof Object);
+      // console.log("1" instanceof String);
+      // console.log([] instanceof Object);
+
+      function iceInstanceof(left, right) {
+        if (typeof left !== "object" && typeof left !== "function")
+          return false;
+        let proto = Object.getPrototypeOf(left);
+        const prototype = right.prototype;
+
+        while (true) {
+          if (!proto) return false;
+          if (proto === prototype) return true;
+          proto = Object.getPrototypeOf(proto);
+        }
+      }
+
+      console.log(iceInstanceof(obj, Object));
+      console.log(iceInstanceof("1", Object));
+      console.log(iceInstanceof(() => {}, Object));
+      console.log(iceInstanceof(function () {}, Object));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. Object.create的用法
+      // 2. 把info这个对象,当做新创建出来的对象,即info2的隐式原型
+      // 3. info2 本身并没有这些属性,沿着它的隐式原型就变相继承了这些属性
+      const info = { name: "ice", age: 23 };
+      // const info2 = Object.create(info);
+      // console.log(info2, info2.name, info2.age);
+
+      // 源码实现
+      // 其本质: 创建出来的对象的[[proto]] === 被继承的对象
+      function create(o) {
+        function Fn() {}
+        Fn.prototype = o;
+        // obj.__proto__ === Fn.prototype
+        return new Fn();
+      }
+      const info2 = create(info);
+      console.log(info2, info2.name, info2.age);
+    </script>
+  </body>
+</html>
