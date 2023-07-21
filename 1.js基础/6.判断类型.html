@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getType(val) {
+        if (val === null) {
+          return val + "";
+        }
+        if (typeof val === "object") {
+          const type = Object.prototype.toString.call(val).replace("]", "").split(" ").pop();
+          return type.toLowerCase();
+        }
+
+        return typeof val;
+      }
+
+      console.log(getType("111"));
+      console.log(getType(22));
+      console.log(getType({}));
+      console.log(getType([]));
+    </script>
+  </body>
+</html>

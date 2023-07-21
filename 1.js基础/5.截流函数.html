@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 核心逻辑：
+        // 返回的一个函数，多次调用这个函数，每次拿到一个最新的时间戳
+        // 算法： （最新执行时间 - 延迟） >= 上一次执行的时间
+      function throttle(fn, delay) {
+        let runTime = 0;
+
+        return () => {
+          let startTime = new Date().valueOf();
+
+          if (startTime - delay >= runTime) {
+            fn();
+            runTime = startTime;
+          }
+        };
+      }
+
+      const throttleFn = throttle(() => {
+        console.log(11111);
+      }, 1000);
+
+      window.addEventListener("resize", () => {
+        throttleFn();
+      });
+    </script>
+  </body>
+</html>
