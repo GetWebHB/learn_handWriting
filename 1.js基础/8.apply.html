@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      Function.prototype.iceApply = function (thisArgs, args) {
+        const object = thisArgs ? Object(thisArgs) : window;
+        object.fn = this;
+
+        const res = object.fn(...args);
+        delete object.fn;
+
+        return res;
+      };
+
+      function bar(name, age) {
+        console.log(this, name, age);
+      }
+      bar.iceApply({ name: "ice" }, ["panda", 23]);
+    </script>
+  </body>
+</html>

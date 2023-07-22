@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.基本使用
+      const info = { name: "ice", age: 20 };
+      function bar() {
+        console.log(this);
+      }
+      // bar.call(info);
+      // bar.call(1);
+      // bar.call("1");
+      // bar.call())  -> window
+
+      Function.prototype.iceCall = function (thisArgs, ...args) {
+        // 这里的this是谁？ 谁调用就是谁 bar.iceCall -> bar
+
+        const object = thisArgs ? Object(thisArgs) : window;
+        object.fn = this;
+
+        const res = object.fn(...args);
+        delete object.fn;
+
+        return res;
+      };
+
+      bar.iceCall(info);
+      bar.iceCall(1);
+      bar.iceCall("1");
+      bar.iceCall();
+    </script>
+  </body>
+</html>
