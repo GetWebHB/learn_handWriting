@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // bind 返回一个新函数
+      const info = { address: "HangZhou" };
+      function bar(name, age) {
+        console.log(this, name, age);
+      }
+      // const foo = bar.bind(info, "ice");
+      // foo(20);
+
+      Function.prototype.iceBind = function (thisArgs, ...args) {
+        // this -> 当前要执行的函数
+        const obj = thisArgs ? Object(thisArgs) : window;
+        obj.fn = this;
+
+        return (...params) => {
+          return obj.fn(...args, ...params);
+        };
+      };
+
+      const foo = bar.bind(info, "ice", 20);
+      foo();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const info = { address: "HangZhou" };
+      function bar(name, age) {
+        console.log(this, name, age);
+      }
+
+      Function.prototype.executor = function (thisArgs, args) {
+        const obj = thisArgs ? Object(thisArgs) : window;
+        obj.fn = this;
+
+        const res = obj.fn(...args);
+        delete obj.fn;
+
+        return res;
+      };
+
+      Function.prototype.iceCall = function (thisArgs, ...args) {
+        return this.executor(thisArgs, args);
+      };
+
+      Function.prototype.iceApply = function (thisArgs, args) {
+        return this.executor(thisArgs, args);
+      };
+
+      bar.iceCall(info, "ice", 23);
+      bar.iceApply(info, ["ice", 23]);
+    </script>
+  </body>
+</html>
