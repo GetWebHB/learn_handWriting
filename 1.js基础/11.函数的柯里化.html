@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 讲多个参数变为多个函数接受单一参数
+      // 这里犯错了，bind的第一个参数为this，第二个args
+
+      function sum(n1, n2, n3) {
+        return n1 + n2 + n3;
+      }
+
+      // 柯里化的本质
+      // const sum = (n1) => (n2) => (n3) => n1 + n2 + n3;
+      // console.log(sum(1)(2)(3));
+
+      const currySum = currying(sum);
+      console.log(currySum(1)(2)(3));
+
+      function currying(fn) {
+        function executor(...n) {
+          if (n.length !== fn.length) {
+            return executor.bind(null, ...n);
+          }
+          return fn(...n);
+        }
+
+        return executor;
+      }
+    </script>
+  </body>
+</html>

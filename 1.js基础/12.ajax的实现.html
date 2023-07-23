@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const URL = "https://z1.muscache.cn/im/pictures/00d4074f-f66e-4bef-906c-53eab5047970.jpg?aki_policy=large";
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", URL);
+      xhr.onreadystatechange = function () {
+        if (this.readyState !== 4) return;
+        if (this.status === 200) {
+          console.log(this.response);
+        }
+      };
+      // 设置它的响应类型
+      xhr.responseType = "blob";
+      xhr.send();
+    </script>
+  </body>
+</html>
