@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function formatTime(time, type) {
+        const year = time.getFullYear();
+        const month = time.getMonth() + 1;
+        const day = time.getDay();
+
+        type = type.replace(/YYYY/, year);
+        type = type.replace(/MM/, month);
+        type = type.replace(/DD/, day);
+
+        return type;
+      }
+
+      console.log(formatTime(new Date(), "YYYY-MM-DD"));
+      console.log(formatTime(new Date(), "YYYY/MM/DD"));
+    </script>
+  </body>
+</html>

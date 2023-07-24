@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const friends = ["fhh", "lhl", "ly", "yj"];
+      const info = {
+        name: "ice",
+        age: 23,
+        friends,
+      };
+
+      function shallowCopy(obj) {
+        const newObj = Array.isArray(obj) ? [] : {};
+
+        for (let key in obj) {
+          const val = obj[key];
+          newObj[key] = val;
+        }
+
+        return newObj;
+      }
+
+      const newInfo = shallowCopy(info);
+      const newFriend = shallowCopy(friends);
+    </script>
+  </body>
+</html>
