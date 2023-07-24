@@ -6,6 +6,7 @@
     <title>Document</title>
   </head>
   <body>
+    <a href="">111</a>
     <script>
       // new操作符做了以下操作
       // 1.创建一个空对象
@@ -14,14 +15,18 @@
       // 4. 执行代码块
       // 5. 如果没有显示的返回一个非空对象, 那么返回的就是这个创建出来的对象
 
-      // function Person(name, age) {
-      //   this.name = name;
-      //   this.age = age;
-      // }
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
       // const p1 = new Person("ice", 30);
-      function Person() {}
 
-      function objectFactory(fn, ...params)
+      function objectFactory(fn, ...params) {
+        const obj = Object.create(fn.prototype);
+        const res = fn.apply(obj, params);
+
+        return res && Object.keys(res) ? res : obj;
+      }
     </script>
   </body>
 </html>

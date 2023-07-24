@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function debounce(fn, delay) {
+        let timer = null;
+
+        return () => {
+          if (timer) clearInterval(timer);
+          timer = setTimeout(fn, delay);
+        };
+      }
+      const debounceFn = debounce(() => console.log(1111), 1000);
+      debounceFn();
+    </script>
+  </body>
+</html>
