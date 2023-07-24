@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // new操作符做了以下操作
+      // 1.创建一个空对象
+      // 2.将this,指向创建出来的对象
+      // 3.将这个对象的__proto__ 指向 构造函数的Prototype
+      // 4. 执行代码块
+      // 5. 如果没有显示的返回一个非空对象, 那么返回的就是这个创建出来的对象
+
+      // function Person(name, age) {
+      //   this.name = name;
+      //   this.age = age;
+      // }
+      // const p1 = new Person("ice", 30);
+      function Person() {}
+
+      function objectFactory(fn, ...params)
+    </script>
+  </body>
+</html>
