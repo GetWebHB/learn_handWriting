@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = [1, [2, [3, 4, 5]]];
+
+      // 1. 递归实现
+      function flatten(arr) {
+        const newArr = [];
+
+        function _flatten(list) {
+          for (let n of list) {
+            if (Array.isArray(n)) {
+              _flatten(n);
+            } else {
+              newArr.push(n);
+            }
+          }
+        }
+        _flatten(arr);
+
+        return newArr;
+      }
+      console.log(flatten(arr));
+
+      // 2. 循环实现
+
+      // 3. flat实现
+    </script>
+  </body>
+</html>
