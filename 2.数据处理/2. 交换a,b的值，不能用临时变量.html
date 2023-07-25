@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. 利用解构
+      let a = 10;
+      let b = 20;
+      // [b, a] = [a, b];
+
+      // 2. 利用差值
+      a = a + b;
+      b = a - b;
+      a = a - b;
+
+      console.log(b, a);
+    </script>
+  </body>
+</html>
