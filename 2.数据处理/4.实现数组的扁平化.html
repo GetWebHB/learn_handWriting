@@ -11,26 +11,32 @@
 
       // 1. 递归实现
       function flatten(arr) {
-        const newArr = [];
+        let newArr = [];
 
-        function _flatten(list) {
-          for (let n of list) {
-            if (Array.isArray(n)) {
-              _flatten(n);
-            } else {
-              newArr.push(n);
-            }
+        for (let n of arr) {
+          if (Array.isArray(n)) {
+            // 每次拿到递归函数的返回值
+            newArr = newArr.concat(flatten(n));
+          } else {
+            newArr.push(n);
           }
         }
-        _flatten(arr);
 
         return newArr;
       }
-      console.log(flatten(arr));
 
       // 2. 循环实现
+      function flatten2(arr) {
+        while (arr.some((n) => Array.isArray(n))) {
+          arr = [].concat(...arr);
+        }
+
+        return arr;
+      }
+      console.log(flatten2(arr));
 
       // 3. flat实现
+      // console.log(arr.flat(Infinity));
     </script>
   </body>
 </html>

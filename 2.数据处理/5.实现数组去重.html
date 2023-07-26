@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const arr = [1, 1, 5, 8, 5, 4, 9, 5, 2, 4, 3];
+
+      // 1. set
+      console.log([...new Set(arr)]);
+
+      // 2.利用闭包
+      // function unique(originArr) {
+      //   const arr = [];
+
+      //   for (let n of originArr) {
+      //     if (!arr.includes(n)) {
+      //       arr.push(n);
+      //     }
+      //   }
+
+      //   return arr;
+      // }
+
+      // 3. 利用双重循环
+      function unique(originArr) {
+        for (let i = 0; i < originArr.length; i++) {
+          for (let j = i + 1; j < originArr.length; j++) {
+            // 相等 代表重复
+            if (originArr[i] === originArr[j]) {
+              originArr.splice(j, 1);
+              j--;
+            }
+          }
+        }
+        return originArr;
+      }
+
+      console.log(unique(arr));
+    </script>
+  </body>
+</html>
