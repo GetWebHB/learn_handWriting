@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const arr = [1, 2, 3, [4, [5, [6]]]];
+
+      function _flat(array, depth) {
+        if (depth < 1) return array;
+        let newArr = [];
+
+        for (let n of array) {
+          if (Array.isArray(n)) {
+            newArr = newArr.concat(_flat(n, depth - 1));
+          } else {
+            newArr.push(n);
+          }
+        }
+        return newArr;
+      }
+
+      console.log(_flat(arr, 3));
+    </script>
+  </body>
+</html>
