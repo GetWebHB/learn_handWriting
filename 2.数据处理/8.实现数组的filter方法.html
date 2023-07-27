@@ -5,5 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <script>
+      const arr = [1, 2, 3, 5, 6, 7, 8];
+
+      Array.prototype._filter = function (fn) {
+        const newArr = [];
+        for (let n of this) {
+          if (fn(n)) {
+            newArr.push(n);
+          }
+        }
+
+        return newArr;
+      };
+
+      const target = arr._filter((item) => item > 3);
+      console.log(target);
+    </script>
+  </body>
 </html>
