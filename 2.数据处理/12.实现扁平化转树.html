@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const config = [
+        {
+          id: 8,
+          sort_num: 1,
+          create_time: "2021-10-21T10:47:26",
+          update_time: "2022-09-16T09:52:31",
+          name: "融资服务",
+          sign: "channel:finance_service",
+          parent_id: 0,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+        {
+          id: 9,
+          sort_num: 2,
+          create_time: "2021-10-21T10:48:39",
+          update_time: "2022-09-16T13:54:03",
+          name: "税务风险",
+          sign: "channel:tax_risk",
+          parent_id: 0,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+        {
+          id: 12,
+          sort_num: 3,
+          create_time: "2022-02-14T18:45:32",
+          update_time: "2022-12-20T20:31:18",
+          name: "企业尽调",
+          sign: "channel:yunjindiao_system",
+          parent_id: 0,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+        {
+          id: 13,
+          sort_num: null,
+          create_time: "2022-02-14T18:47:03",
+          update_time: "2022-09-15T13:54:15",
+          name: "企业尽调报告",
+          sign: "channel:jindiao_company_analysis",
+          parent_id: 12,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+        {
+          id: 14,
+          sort_num: 4,
+          create_time: "2022-05-19T18:54:09",
+          update_time: "2022-09-16T14:40:50",
+          name: "财政补贴",
+          sign: "channel:fiscal_subsidies",
+          parent_id: 0,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+        {
+          id: 15,
+          sort_num: null,
+          create_time: "2022-05-19T18:54:45",
+          update_time: "2022-12-20T20:31:27",
+          name: "财政补贴报告",
+          sign: "channel:fiscal_subsidies_analysis",
+          parent_id: 14,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+        {
+          id: 18,
+          sort_num: 5,
+          create_time: "2022-10-26T14:49:24",
+          update_time: "2022-11-08T11:24:37",
+          name: "供应商尽调报告",
+          sign: "channel:jindiao_supplier_analysis",
+          parent_id: 12,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+        {
+          id: 20,
+          sort_num: 6,
+          create_time: "2022-12-19T10:56:35",
+          update_time: "2022-12-19T10:56:35",
+          name: "经营参谋",
+          sign: "channel:business_strategy",
+          parent_id: 0,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+        {
+          id: 21,
+          sort_num: 6,
+          create_time: "2022-12-19T10:56:35",
+          update_time: "2022-12-20T20:35:18",
+          name: "经营参谋报告",
+          sign: "channel:business_strategy_analysis",
+          parent_id: 20,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+        {
+          id: 22,
+          sort_num: null,
+          create_time: "2023-01-31T10:33:15",
+          update_time: "2023-01-31T10:33:15",
+          name: "融资服务报告",
+          sign: "channel:finance_service_analysis",
+          parent_id: 8,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+        {
+          id: 23,
+          sort_num: null,
+          create_time: "2023-01-31T10:27:31",
+          update_time: "2023-01-31T10:31:16",
+          name: "工商司法匹配报告",
+          sign: "channel:business_justice_analysis",
+          parent_id: 8,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+        {
+          id: 24,
+          sort_num: null,
+          create_time: "2023-04-25T11:37:51",
+          update_time: "2023-04-25T11:37:51",
+          name: "税务风险报告-简版",
+          sign: "channel:tax_risk_check_simple",
+          parent_id: 9,
+          remark: "",
+          state: 1,
+          station_config: 1,
+          is_selected: true,
+        },
+      ];
+
+      function jsonToTree(json, exclude = []) {
+        const map = new Map();
+        const tree = [];
+
+        // 首先先转为对象结构
+        for (let o of json) {
+          map[o.id] = o;
+        }
+
+        // 遍历是否有父级
+        for (let o of json) {
+          const parent_id = o.parent_id;
+          if (parent_id) {
+            if (!exclude.includes(o.sign)) {
+              const parent = map[parent_id];
+              Array.isArray(parent.children) ? parent.children.push(o) : (parent.children = []).push(o);
+            }
+          } else {
+            tree.push(o);
+          }
+        }
+
+        return tree;
+      }
+
+      console.log(jsonToTree(config, ["channel:business_justice_analysis"]));
+    </script>
+  </body>
+</html>
