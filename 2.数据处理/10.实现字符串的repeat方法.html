@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(repeat("abc", 3));
+
+      // 数组的形式
+      // function repeat(s, n) {
+      //   return new Array(n + 1).join(s);
+      // }
+
+      // 利用递归
+      function repeat(s, n) {
+        let str = "";
+        // 先找出口
+        if (n === 0) return "";
+
+        str = s.concat(repeat(s, n - 1));
+
+        return str;
+      }
+    </script>
+  </body>
+</html>
