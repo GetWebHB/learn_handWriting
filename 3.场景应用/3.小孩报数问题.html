@@ -10,18 +10,37 @@
       // 有30个小孩儿，编号从1-30，围成一圈依此报数，1、2、3 数到 3 的小孩儿退出这个圈， 然后下一个小孩 重新报数 1、2、3，问最后剩下的那个小孩儿的编号是多少?
       // 约瑟夫环：核心逻辑
       // 一个数组中，如果是不是count的倍数，我们让它到数组的最后，是的话我们直接删除
+
+      // 自己写的
+      // function childNum(n, c) {
+      //   const queue = new Array(n).fill(0).map((_, idx) => idx + 1);
+
+      //   let count = 0;
+      //   while (queue.length !== 1) {
+      //     count++;
+      //     const n = queue.shift();
+      //     if (count !== c) {
+      //       queue.push(n);
+      //     } else {
+      //       count = 0;
+      //     }
+      //   }
+
+      //   return queue[0];
+      // }
+
       function childNum(n, c) {
+        //入队
         const queue = new Array(n).fill(0).map((_, idx) => idx + 1);
 
-        let count = 0;
-        while (queue.length !== 1) {
-          count++;
-          const n = queue.shift();
-          if (count !== c) {
-            queue.push(n);
-          } else {
-            count = 0;
+        while (queue.length > 1) {
+          // 不是c的倍数直接出队在入队
+          // 因为前两次已经删除，第三次在删除第一个元素，那就是淘汰的人
+          for (let i = 1; i < c; i++) {
+            queue.push(queue.shift());
           }
+          // 是c的直接出队
+          queue.shift();
         }
 
         return queue[0];
