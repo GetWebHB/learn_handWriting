@@ -17,6 +17,22 @@
       function yellow() {
         console.log("yellow");
       }
+
+      async function loopLight() {
+        await executor(red, 3000);
+        await executor(green, 1000);
+        await executor(yellow, 2000);
+        loopLight();
+      }
+
+      function executor(cb, delay) {
+        return new Promise((res, rej) => {
+          setTimeout(() => {
+            cb();
+            res();
+          }, delay);
+        });
+      }
     </script>
   </body>
 </html>
