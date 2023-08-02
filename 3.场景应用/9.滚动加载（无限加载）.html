@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        background: skyblue;
+        height: 300px;
+        padding: 10px 0;
+        overflow: auto;
+      }
+
+      .box {
+        background: pink;
+        height: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="box"></div>
+    </div>
+    <div class="footer"></div>
+    <script>
+      // 分析clientHeight、scrollTop、scrollHeight三者的属性关系。
+
+      /*
+        1.scrollTop: 已经滚动过的距离（被浏览器卷进的距离） x
+        2.scrollHeight: 内容的高度，包括内容溢出不可见的高度
+        3.clientHeight：内容可视区域的大小
+      */
+      const content = document.querySelector(".content");
+
+      content.addEventListener("scroll", () => {
+        if (content.scrollHeight - content.clientHeight - content.scrollTop < 1) {
+          console.log("到达了底部");
+        }
+      });
+    </script>
+  </body>
+</html>
