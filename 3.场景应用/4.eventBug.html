@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class EventBus {
+        eventMap = {};
+
+        on(name, fn) {
+          const event = this.eventMap[name];
+          if (!event) {
+            const arr = [];
+            arr.push(fn);
+            this.eventMap[name] = arr;
+          } else {
+            event.push(fn);
+          }
+        }
+
+        emit(name, ...args) {
+          const event = this.eventMap[name];
+          if (event) {
+            for (let e of event) {
+              e(...args);
+            }
+          }
+        }
+
+        off(name, fn) {
+          const event = this.eventMap[name];
+          if (event) {
+            const idx = event.findIndex((item) => item === fn);
+            if (idx > 0) {
+              event.splice(idx, 1);
+            }
+          }
+        }
+      }
+
+      const e = new EventBus();
+
+      e.on("info", (name, age) => {
+        console.log(name, age);
+      });
+
+      e.on("info", (name, age) => {
+        console.log(name, age);
+      });
+
+      e.on("info", info);
+
+      setTimeout(() => {
+        e.emit("info", "ice", 20);
+      }, 3000);
+
+      setTimeout(() => {
+        e.off("info", info);
+      }, 1000);
+
+      function info() {
+        console.log(name, age);
+      }
+    </script>
+  </body>
+</html>
