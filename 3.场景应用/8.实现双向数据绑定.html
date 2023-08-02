@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <h2></h2>
+    <script>
+      const iptEl = document.querySelector("input");
+      const h2El = document.querySelector("h2");
+      const info = {};
+
+      Object.defineProperty(info, "text", {
+        get() {
+          console.log("获取数据");
+          return info.text;
+        },
+        set(newVal) {
+          h2El.innerHTML = newVal;
+        },
+      });
+
+      iptEl.addEventListener("keyup", (e) => {
+        info.text = e.target.value;
+      });
+    </script>
+  </body>
+</html>
