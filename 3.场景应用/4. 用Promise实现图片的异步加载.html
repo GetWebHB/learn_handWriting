@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function asyncImages(url) {
+        return new Promise((res, rej) => {
+          const image = new Image();
+          image.src = url;
+          image.onload = function () {
+            res("success");
+          };
+          image.onerror = function () {
+            rej("error");
+          };
+        });
+      }
+      asyncImages(
+        "http://wuneng-public.oss-cn-hangzhou.aliyuncs.com/wp/enterpriseLogo/20230705/092302ng"
+      )
+        .then(console.log)
+        .catch(console.log);
+    </script>
+  </body>
+</html>
