@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title
+  </head>
+  <body>
+    <script>
+      function palinNum(n) {
+        const s = n + ''
+
+        return s === s.split('').reverse().join('')
+      }
+
+      console.log(palinNum(100))
+      console.log(palinNum(12))
+      console.log(palinNum(111))
+      console.log(palinNum(121))
+      console.log(palinNum(121))
+    </script>
+  </body>
+</html>
