@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 错误实例
+      // function _setInterval(fn, wait) {
+      //   const timer = {
+      //     flag: true,
+      //   };
+      //   function _setTimerout(cb, delay) {
+      //     // if (timer.flag) {
+      //     //   _setTimerout();
+      //     // }
+      //     setTimeout(cb, delay);
+      //   }
+
+      //   _setTimerout(fn, wait);
+
+      //   return timer;
+      // }
+
+      function _setInterval(fn, delay) {
+        const timer = {
+          flag: true,
+        };
+
+        function _interval() {
+          if (timer.flag) {
+            fn();
+            setTimeout(_interval, delay);
+          }
+        }
+
+        // 本质，接触传入的fn函数，进行处理
+        setTimeout(_interval, delay);
+
+        return timer;
+      }
+
+      const timer = _setInterval(() => {
+        console.log("interval");
+      }, 1000);
+
+      setTimeout(() => {
+        timer.flag = false;
+      }, 3100);
+    </script>
+  </body>
+</html>
