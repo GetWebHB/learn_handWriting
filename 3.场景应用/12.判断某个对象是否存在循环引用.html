@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const info = {
+        name: "ice",
+        age: 20,
+      };
+      const info2 = {
+        name: "panda",
+        age: 22,
+      };
+      info2.info = info2;
+
+      function isCycleObject(info) {
+        if (info && typeof info !== "object") return false;
+
+        const values = Object.values(info);
+        const flag = !!values.find((item) => item === info);
+
+        return flag;
+      }
+      console.log(isCycleObject(11));
+      console.log(isCycleObject(info));
+      console.log(isCycleObject(info2));
+    </script>
+  </body>
+</html>

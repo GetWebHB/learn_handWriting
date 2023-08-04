@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // const p1 = new Promise((res, rej) => {
+      //   setTimeout(() => {
+      //     res(100);
+      //     rej();
+      //   }, 1000);
+      // });
+
+      // p1.then(console.log);
+
+      class IcePromise {
+        STATUS = "padding";
+        PADDING = "padding";
+        FUlFILLED = "fulfilled";
+        REJECT = "reject";
+
+        value = undefined;
+
+        constructor(executor) {
+          executor(this.resolve.bind(this), this.reject.bind(this));
+        }
+
+        resolve(val) {
+          if (this.STATUS === this.PADDING) {
+            this.value = val;
+            this.STATUS = this.FUlFILLED;
+          }
+        }
+
+        reject(reason) {
+          if (this.STATUS === this.PADDING) {
+            this.value = reason;
+            this.STATUS = this.REJECT;
+          }
+        }
+
+        // fulfilled 回调的太早
+        then(onFulfilled) {
+          this.onFulfilled = onFulfilled;
+          // onFulfilled(this.value);
+        }
+      }
+
+      const p = new IcePromise((resolve, reject) => {
+        // setTimeout(() => {
+        // }, 1000);
+        resolve(100);
+      });
+
+      p.then((res) => {
+        console.log(res);
+      });
+    </script>
+  </body>
+</html>
