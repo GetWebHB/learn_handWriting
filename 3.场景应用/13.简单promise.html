@@ -22,47 +22,61 @@
           this.PADDING = "padding";
           this.FUlFILLED = "fulfilled";
           this.REJECT = "reject";
+
           this.value = undefined;
+          this.reason = undefined;
+
           this.fulfilledCallback = [];
-          this.rejectCallback = [];
+          this.rejectedCallback = [];
 
           // 不绑定this，上层作用域中的this
           this.resolve = (val) => {
-            if (this.STATUS === this.PADDING) {
-              this.value = val;
-              this.STATUS = this.FUlFILLED;
+            setTimeout(() => {
+              if (this.STATUS === this.PADDING) {
+                this.value = val;
+                this.STATUS = this.FUlFILLED;
 
-              for (let fn of this.fulfilledCallback) {
-                fn(this.value);
+                // 执行成功的回调函数
+                this.fulfilledCallback.forEach((cb) => cb(this.value));
               }
-            }
+            }, 0);
           };
 
           this.reject = (reason) => {
             if (this.STATUS === this.PADDING) {
-              this.value = val;
-              this.STATUS = this.REJECT;
+              setTimeout(() => {
+                this.reason = reason;
+                this.STATUS = this.REJECT;
+
+                // 执行失败的回调函数
+                this.rejectedCallback.forEach((cb) => cb(this.reason));
+              }, 0);
             }
           };
 
           executor(this.resolve, this.reject);
         }
 
-        then(onFulfilled) {
-          this.fulfilledCallback.push(onFulfilled);
+        then(onFulfilled, onRejected) {
+          if (typeof onFulfilled === "function") {
+            this.fulfilledCallback.push(onFulfilled);
+          }
+
+          if (typeof onRejected === "function") {
+            this.rejectedCallback.push(onRejected);
+          }
         }
       }
 
       const p = new IcePromise((resolve, reject) => {
-        // setTimeout(() => {
-        // }, 1000);
         resolve(100);
       });
 
       // 隐式绑定
-      p.then((res) => {
-        console.log(res);
-      });
+      p.then(console.log, console.log);
+      p.then(console.log, console.log);
+      p.then(console.log, console.log);
+      p.then(console.log, console.log);
     </script>
   </body>
 </html>

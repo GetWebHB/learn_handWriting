@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class IPromise {
+        constructor(executor) {
+          this.STATUS = "PENDING";
+          this.PENDING = "PENDING";
+          this.FULFILLED = "FULFILLED";
+          this.REJECTED = "REJECTED";
+
+          this.onFulfilledCallbacks = [];
+          this.onRejectedCallbacks = [];
+
+          this.value = undefined;
+          this.reason = undefined;
+
+          // 立即执行函数
+          try {
+            executor(this.resolve, this.reject);
+          } catch (error) {
+            this.reject(error);
+          }
+        }
+
+        // 定义resolve方法
+        resolve = (val) => {
+          if (this.STATUS === this.PENDING) {
+            this.STATUS = this.FULFILLED;
+            this.value = val;
+
+            // 执行then方法中传入的回调函数
+            this.onFulfilledCallbacks.forEach((cb) => cb(this.value));
+          }
+        };
+
+        // 定义reject方法
+        reject = (resolve) => {
+          if (this.STATUS === this.PENDING) {
+            this.STATUS = this.REJECTED;
+            this.reason = val;
+
+            // 执行catch方法中传入的回调函数
+            this.onRejectedCallbacks.forEach((cb) => cb(this.reason));
+          }
+        };
+      }
+
+      const p = new IPromise((resolve, reject) => {
+        console.log(111);
+        // resolve(1000);
+      });
+    </script>
+  </body>
+</html>
