@@ -21,17 +21,15 @@ class IPromise {
     };
 
     const reject = (reason) => {
-      queueMicrotask(() => {
-        if (this.STATUS === this.PENDING) {
-          this.STATUS = this.REJECTED;
-          this.reason = reason;
+      if (this.STATUS === this.PENDING) {
+        this.STATUS = this.REJECTED;
+        this.reason = reason;
 
-          // 执行失败回调函数
-          queueMicrotask(() => {
-            this.onRejected(this.reason);
-          });
-        }
-      });
+        // 执行失败回调函数
+        queueMicrotask(() => {
+          this.onRejected(this.reason);
+        });
+      }
     };
 
     executor(resolve, reject);
