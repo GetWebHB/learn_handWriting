@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const p1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(10);
+        }, 1000);
+      });
+
+      const p2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(20);
+        }, 1000);
+      });
+
+      const p3 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(30);
+        }, 1000);
+      });
+
+      // Promise.all([p1, p2, p3]).then((res) => {
+      //   console.log(`res:`, res);
+      // });
+
+      class IPromise {
+        resList = [];
+
+        static all(promises) {
+          let res = [];
+          promises.forEach((promise) => {
+            promise.then((val) => {
+              res.push(val);
+              this.resList = res;
+            });
+          });
+
+          return new IPromise();
+        }
+
+        then(cb) {
+          cb(this.resList);
+        }
+      }
+
+      const pa = IPromise.all([p1, p2, p3]);
+
+      pa.then((res) => {
+        console.log("res:", res);
+      });
+
+      console.log(pa);
+    </script>
+  </body>
+</html>
