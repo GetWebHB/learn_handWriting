@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 类中，相当于开启了严格模式 全局this -> undefined
+      // 回调函数中，应该采用箭头函数？ 因为传入的回调函数属于独立函数调用，应该绑定上层作用于中的this
+      class Person {
+        constructor(executor) {
+          this.name = "ice";
+          this.age = 20;
+
+          // 为什么使用箭头函数
+          // this.resolve = () => {};
+
+          executor(this.resolve);
+        }
+        resolve = () => {
+          console.log(this.name, this.age);
+        };
+      }
+
+      const p = new Person((resolve) => {
+        resolve();
+      });
+
+      console.log(p.name);
+    </script>
+  </body>
+</html>

@@ -17,35 +17,39 @@
       // p1.then(console.log);
 
       class IcePromise {
-        STATUS = "padding";
-        PADDING = "padding";
-        FUlFILLED = "fulfilled";
-        REJECT = "reject";
-
-        value = undefined;
-
         constructor(executor) {
-          executor(this.resolve.bind(this), this.reject.bind(this));
+          this.STATUS = "padding";
+          this.PADDING = "padding";
+          this.FUlFILLED = "fulfilled";
+          this.REJECT = "reject";
+          this.value = undefined;
+          this.fulfilledCallback = [];
+          this.rejectCallback = [];
+
+          // 不绑定this，上层作用域中的this
+          this.resolve = (val) => {
+            if (this.STATUS === this.PADDING) {
+              this.value = val;
+              this.STATUS = this.FUlFILLED;
+
+              for (let fn of this.fulfilledCallback) {
+                fn(this.value);
+              }
+            }
+          };
+
+          this.reject = (reason) => {
+            if (this.STATUS === this.PADDING) {
+              this.value = val;
+              this.STATUS = this.REJECT;
+            }
+          };
+
+          executor(this.resolve, this.reject);
         }
 
-        resolve(val) {
-          if (this.STATUS === this.PADDING) {
-            this.value = val;
-            this.STATUS = this.FUlFILLED;
-          }
-        }
-
-        reject(reason) {
-          if (this.STATUS === this.PADDING) {
-            this.value = reason;
-            this.STATUS = this.REJECT;
-          }
-        }
-
-        // fulfilled 回调的太早
         then(onFulfilled) {
-          this.onFulfilled = onFulfilled;
-          // onFulfilled(this.value);
+          this.fulfilledCallback.push(onFulfilled);
         }
       }
 
@@ -55,6 +59,7 @@
         resolve(100);
       });
 
+      // 隐式绑定
       p.then((res) => {
         console.log(res);
       });
