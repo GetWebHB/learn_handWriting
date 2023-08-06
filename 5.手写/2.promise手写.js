@@ -1,51 +1,44 @@
 const p1 = new Promise((resolve, reject) => {
-  setTimeout(() => {
+  setInterval(() => {
     resolve(1000);
-  }, 1000);
-});
-const p2 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(2000);
   }, 2000);
 });
-const p3 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    reject(3000);
-  }, 3000);
-});
 
-// Promise.all([p1, p2, p3])
-//   .then((res) => {
-//     console.log(res);
-//   })
-//   .catch((e) => {
-//     console.log("error:", e);
-//   });
+const p2 = new Promise((resolve, reject) => {
+  setInterval(() => {
+    resolve(2000);
+    // reject("error");
+  }, 1000);
+});
 
 class IPromise {
   static all(promises) {
     const result = [];
     let count = 0;
+    const len = promises.length;
+
     return new Promise((resolve, reject) => {
       promises.forEach((promise, idx) => {
         promise
           .then((res) => {
             count++;
             result.push(res);
-            if (count === length) {
+            if (count == len) {
               resolve(result);
             }
           })
-          .catch((e) => {
-            reject(e);
+          .catch((err) => {
+            reject(err);
           });
       });
     });
   }
 }
 
-IPromise.all([p1, p2, p3])
+IPromise.all([p1, p2])
   .then((res) => {
-    console.log(res);
+    console.log("res:", res);
   })
-  .catch((e) => console.log("err:", e));
+  .catch((err) => {
+    console.log("err:", err);
+  });

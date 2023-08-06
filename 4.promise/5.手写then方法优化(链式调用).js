@@ -1,5 +1,6 @@
 class IPromise {
   constructor(executor) {
+    // this代表实例化对象
     this.PENDING = "PENDING";
     this.FULFILLED = "FULFILLED";
     this.REJECTED = "REJECTED";
@@ -11,6 +12,7 @@ class IPromise {
     this.value = undefined;
     this.reason = undefined;
 
+    // 代表在这个作用域定义
     const resolve = (value) => {
       if (this.STATUS === this.PENDING) {
         this.STATUS = this.FULFILLED;
