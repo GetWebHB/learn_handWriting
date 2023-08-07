@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function addJsonp(url) {
+        const s = document.createElement("script");
+        s.src = url;
+        s.type = "text/javascript";
+        s.crossOrigin = true;
+
+        document.body.appendChild(s);
+      }
+
+      addJsonp(
+        "http://codercba.com:1888/airbnb/api/entire/list?callback=handleRes"
+      );
+
+      function handleRes(res) {
+        console.log(res);
+      }
+      // handleRes({ a: 1 });
+    </script>
+  </body>
+</html>
