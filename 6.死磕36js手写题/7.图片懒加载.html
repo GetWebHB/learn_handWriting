@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .line {
+        height: 30px;
+        background: pink;
+        padding-bottom: 1500px;
+      }
+      .lazy {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="line"></div>
+    <img class="lazy" src="./default.png" data-src="http://wuneng-public.oss-cn-hangzhou.aliyuncs.com/wp/enterpriseLogo/20230705/092302ng" alt="" />
+    <img class="lazy" src="./default.png" data-src="https://p9-passport.byteacctimg.com/img/user-avatar/0c723305225c423873612634aeed0787~100x100.awebp" alt="" />
+    <img class="lazy" src="./default.png" data-src="https://p9-passport.byteacctimg.com/img/user-avatar/5b850fe0b19f20270782acf1feafa219~80x80.awebp" alt="" />
+
+    <script>
+      function lazyImages(e) {
+        const imgs = [...document.querySelectorAll(".lazy")];
+
+        imgs.forEach((el, idx) => {
+          const rect = el.getBoundingClientRect();
+          const top = rect.top;
+          const bottom = rect.bottom;
+          const HEIGHT = 50; //提供缓冲区
+
+          // 元素呈现在屏幕当中 bottom > 0 代表元素肯定不在屏幕中 && display可见
+          if (top <= window.innerHeight + 50 && bottom > 0) {
+            const src = el.dataset.src;
+            el.src = src;
+            // 加载后需要溢出加载的元素
+            el.removeAttribute("data-src");
+            el.className = "";
+            imgs.splice(idx, 1);
+            if (!imgs.length) {
+              console.log("移除");
+              window.addEventListener("scroll", lazyImages);
+            }
+          }
+        });
+      }
+
+      window.addEventListener("scroll", lazyImages);
+    </script>
+  </body>
+</html>
