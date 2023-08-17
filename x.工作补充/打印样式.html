@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background: url("https://wuneng-public.oss-cn-hangzhou.aliyuncs.com/wfzx/report/cover/20230613/1686639889156_yrR.png") 0px 0px / 100% no-repeat;
+        -webkit-print-color-adjust: exact;
+        -moz-print-color-adjust: exact;
+        -ms-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      /*强制分页*/
+      .print-page {
+        page-break-after: always;
+      }
+      /* 避免表格断开 */
+      table {
+        page-break-after: avoid;
+      }
+      /* 左右边距 */
+      @page :left {
+        margin: 0;
+      }
+      @page :right {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body></body>
+</html>
