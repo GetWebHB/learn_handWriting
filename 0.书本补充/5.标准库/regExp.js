@@ -213,7 +213,16 @@
 // console.log(/abc/.test("ABC"));
 // console.log(/abc/i.test("ABC"));
 
-const r1 = /world$/;
-const r2 = /world$/m;
-console.log(r1.test("world\n"));
-console.log(r2.test("world\n"));
+// const r1 = /world$/;
+// const r2 = /world$/m;
+// console.log(r1.test("world\n"));
+// console.log(r2.test("world\n"));
+
+/*
+  (9): 组匹配
+  括号表示分组匹配，括号中的模式可以用来匹配分组的内容
+*/
+const r1 = /fred+/;
+const r2 = /(fred)+/;
+console.log(r1.test("fredaaadddd"));
+console.log(r2.test("fredfred"));
