@@ -1,5 +1,5 @@
 function numToBinary(num) {
-  const stack = [];
+  const stack: number[] = [];
   let str = "";
 
   while (num > 0) {
