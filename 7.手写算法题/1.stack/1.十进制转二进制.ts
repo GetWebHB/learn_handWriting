@@ -1,4 +1,4 @@
-function numToBinary(num) {
+function numToBinary(num: number) {
   const stack: number[] = [];
   let str = "";
 
