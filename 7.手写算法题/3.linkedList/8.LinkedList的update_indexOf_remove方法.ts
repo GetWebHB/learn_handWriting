@@ -4,7 +4,7 @@ class Node<T = any> {
   constructor(public value: T) {}
 }
 
-class LinkedList<T> {
+export class LinkedList<T> {
   size = 0;
   head: Node<T> | null = null;
 
@@ -139,29 +139,29 @@ class LinkedList<T> {
 
 const linkedList = new LinkedList<string>();
 
-linkedList.append("ice");
-linkedList.append("panda");
-linkedList.append("quezz");
-console.log(linkedList.traverse());
-console.log("------insert------");
-linkedList.insert(0, "zhj");
-linkedList.insert(4, "binbin");
-linkedList.insert(2, "panpan");
-console.log(linkedList.traverse());
-console.log("------removeAt------");
-linkedList.removeAt(0);
-linkedList.removeAt(4);
-linkedList.removeAt(2);
-console.log(linkedList.traverse());
-console.log(linkedList.get(2));
-console.log(linkedList.get(3));
-console.log("------update------");
-linkedList.update(2, "q");
-console.log(linkedList.traverse());
-console.log("------indexOf------");
-console.log(linkedList.indexOf("q"));
-console.log("------remove------");
-console.log(linkedList.remove("q"));
-console.log(linkedList.traverse());
+// linkedList.append("ice");
+// linkedList.append("panda");
+// linkedList.append("quezz");
+// console.log(linkedList.traverse());
+// console.log("------insert------");
+// linkedList.insert(0, "zhj");
+// linkedList.insert(4, "binbin");
+// linkedList.insert(2, "panpan");
+// console.log(linkedList.traverse());
+// console.log("------removeAt------");
+// linkedList.removeAt(0);
+// linkedList.removeAt(4);
+// linkedList.removeAt(2);
+// console.log(linkedList.traverse());
+// console.log(linkedList.get(2));
+// console.log(linkedList.get(3));
+// console.log("------update------");
+// linkedList.update(2, "q");
+// console.log(linkedList.traverse());
+// console.log("------indexOf------");
+// console.log(linkedList.indexOf("q"));
+// console.log("------remove------");
+// console.log(linkedList.remove("q"));
+// console.log(linkedList.traverse());
 
 export {};
