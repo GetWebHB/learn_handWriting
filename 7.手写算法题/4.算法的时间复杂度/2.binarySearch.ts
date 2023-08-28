@@ -1,12 +1,13 @@
 function binarySearch(arr: number[], n: number) {
   let left = 0;
-  let right = arr.length;
+  let right = arr.length - 1;
 
   while (left !== right) {
     let idx = Math.floor((left + right) / 2);
-    if (arr[idx] > n) {
+    const val = arr[idx];
+    if (val > n) {
       right = idx;
-    } else if (arr[idx] < n) {
+    } else if (val < n) {
       left = idx;
     } else {
       return idx;
