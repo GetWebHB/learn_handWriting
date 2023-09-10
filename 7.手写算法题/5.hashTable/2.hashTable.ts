@@ -1,3 +1,5 @@
+import { isPrimeNum } from './3.判断是否为质数'
+
 class HashTable<T = any> {
   storage: [string, T][][] = []
   private count = 0
@@ -5,6 +7,17 @@ class HashTable<T = any> {
 
   get loadFactor() {
     return this.count / this.length
+  }
+
+  // 获取下一个质数
+  getNextPrimi(n: number) {
+    let prime = n
+
+    while (!isPrimeNum(prime)) {
+      prime++
+    }
+
+    return prime
   }
 
   hashFunc(key: string, max: number) {
@@ -92,11 +105,13 @@ class HashTable<T = any> {
 
   // 扩容操作
   resize(length: number) {
+    const nextPrime = this.getNextPrimi(length)
+    console.log('下一个质数是：', nextPrime)
     // 重置操作
     const oldStorage = this.storage
     this.storage = []
     this.count = 0
-    this.length = length
+    this.length = nextPrime
 
     for (let bucket of oldStorage) {
       for (let [tupleKey, tupleVal] of bucket || []) {
@@ -124,11 +139,11 @@ console.log('-------------')
 // console.log(hashTable.delete('ice'))
 // console.log(hashTable.delete('panda'))
 // console.log(hashTable.storage)
-hashTable.delete('ice')
-hashTable.delete('quezz')
-hashTable.delete('nbc')
-hashTable.delete('cba')
-hashTable.delete('panda')
-hashTable.delete('juejin')
-hashTable.delete('xxx')
-console.log(hashTable.storage)
+// hashTable.delete('ice')
+// hashTable.delete('quezz')
+// hashTable.delete('nbc')
+// hashTable.delete('cba')
+// hashTable.delete('panda')
+// hashTable.delete('juejin')
+// hashTable.delete('xxx')
+// console.log(hashTable.storage)

@@ -10,11 +10,13 @@ function isPrimeNum(num: number): boolean {
   return true
 }
 
-console.log(isPrimeNum(11))
-console.log(isPrimeNum(2))
-console.log(isPrimeNum(1))
-console.log(isPrimeNum(3))
-console.log(isPrimeNum(33))
-console.log(isPrimeNum(4))
-console.log(isPrimeNum(6))
-console.log(isPrimeNum(8))
+export { isPrimeNum }
+
+// console.log(isPrimeNum(11))
+// console.log(isPrimeNum(2))
+// console.log(isPrimeNum(1))
+// console.log(isPrimeNum(3))
+// console.log(isPrimeNum(33))
+// console.log(isPrimeNum(4))
+// console.log(isPrimeNum(6))
+// console.log(isPrimeNum(8))
