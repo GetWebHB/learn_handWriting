@@ -1,7 +1,9 @@
 function isPrimeNum(num: number): boolean {
+  if (num === 1) return false
 
   // 只能被自身和1整除的数
-  for (let i = 2; i < num; i++) {
+  const sort = Math.sqrt(num)
+  for (let i = 2; i <= sort; i++) {
     if (num % i === 0) return false
   }
 
