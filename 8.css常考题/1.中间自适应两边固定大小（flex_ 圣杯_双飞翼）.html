@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      /* 方式一： */
+      /* .continer {
+        display: flex;
+      }
+      .left,
+      .right {
+        width: 200px;
+        height: 40px;
+        background: pink;
+      }
+      .middle {
+        flex: 1;
+        height: 40px;
+        background: skyblue;
+      } */
+
+      /* 圣杯一： 左右浮动 */
+      /* .continer {
+        padding: 0 200px;
+      }
+      .left,
+      .right {
+        float: left;
+        width: 200px;
+        height: 40px;
+        background: pink;
+      }
+      .left {
+        margin: -40px 0 0 -200px;
+      }
+      .right {
+        margin: -40px -200px 0 0;
+        float: right;
+        background: purple;
+      }
+      .middle {
+        width: 100%;
+        height: 40px;
+        background: skyblue;
+      } */
+
+      /* 圣杯二： 全部浮动 */
+      .continer {
+        padding: 0 200px;
+      }
+      .left,
+      .right,
+      .middle {
+        float: left;
+      }
+
+      .left,
+      .right {
+        width: 200px;
+        height: 40px;
+        background: pink;
+      }
+
+      .left {
+        position: relative;
+        left: -100%;
+        margin-left: -200px;
+      }
+      .right {
+        margin-right: -200px;
+        background: purple;
+      }
+      .middle {
+        width: 100%;
+        height: 40px;
+        background: skyblue;
+      }
+      /* 双飞翼middle背景是被left+right盖上去的  圣杯是站位的left/right z轴下面并没有值*/
+    </style>
+  </head>
+  <body>
+    <!-- 方式一：左边固定大小 中间flex：1 -->
+    <!-- <div class="continer">
+      <div class="left"></div>
+      <div class="middle"></div>
+      <div class="right"></div>
+    </div> -->
+
+    <!-- 圣杯布局一 -->
+    <!-- <div class="continer">
+      <div class="middle"></div>
+      <div class="left"></div>
+      <div class="right"></div>
+    </div> -->
+
+    <!-- 圣杯布局二 -->
+    <div class="continer">
+      <div class="middle"></div>
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
+  </body>
+</html>
