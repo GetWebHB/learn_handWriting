@@ -7,6 +7,6 @@ class TreeNode<T> extends Node<T> {
   right: NodeType<T> = null
 }
 
-class BSTTree<T> {
-  private root: NodeType<T> = null
+class BSTree<T> {
+  private root: TreeNode<T> | null = null
 }
