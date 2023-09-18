@@ -1,5 +1,5 @@
-import Node from './Node'
-import { btPrint } from 'hy-algokit'
+import Node from "./Node"
+import { btPrint } from "hy-algokit"
 
 class TreeNode<T> extends Node<T> {
   left: TreeNode<T> | null = null
@@ -111,9 +111,7 @@ class BSTree<T> {
   }
 
   // currentNode/parentNode
-  searchNode(val: T): TreeNode<T> | null {
-    if (!this.root) return null
-
+  searchNode(val: T): TreeNode<T> {
     let current: TreeNode<T> | null = this.root
     let parent: TreeNode<T> | null = null
 
@@ -133,7 +131,7 @@ class BSTree<T> {
       current!.parent = parent
     }
 
-    return current
+    return current!
   }
 
   getSuccessor(delNode: TreeNode<T>): TreeNode<T> {
@@ -143,7 +141,7 @@ class BSTree<T> {
     while (current) {
       successor = current
       current = current!.left
-      if (current) { // 没搞懂 待处理
+      if (current) {
         current.parent = successor
       }
     }
@@ -151,7 +149,7 @@ class BSTree<T> {
     // 左右子树上移的情况
     if (delNode.right !== successor) {
       // 后继节点后面还有值的情况
-      successor!.parent!.left = successor?.right ?? null // 没搞懂 待处理
+      successor!.parent!.left = successor?.right ?? null
       successor!.right = delNode.right
     }
     successor!.left = delNode.left
@@ -166,63 +164,33 @@ class BSTree<T> {
 
     // 获取当前被删除的节点
     const cur = this.searchNode(val)
+    let replaceNode: TreeNode<T> | null = null
 
     // 2. 删除叶子节点 （节点度为0的）
     if (!cur?.left && !cur?.right) {
-      // 2.1 如果是根节点
-      if (cur === this.root) {
-        this.root = null
-      }
-      // 2.2 删除的节点是左节点
-      else if (cur?.isLeft) {
-        cur.parent!.left = null
-      }
-      // 2.3 删除的节点是右节点
-      else {
-        cur!.parent!.right = null
-      }
+      replaceNode = null
     }
     // 3. 有一个左子节点
     else if (!cur.right) {
-      // 3.1 如果是根节点
-      if (cur === this.root) {
-        this.root = cur.left
-      }
-      // 3.2 删除的左子节点
-      else if (cur.isLeft) {
-        cur.parent!.left = cur.left
-      }
-      // 3.3 删除的右子节点
-      else {
-        cur.parent!.right = cur.left
-      }
+      replaceNode = cur.left
     }
     // 4. 有一个右子节点
     else if (!cur.left) {
-      // 4.1 如果是根节点
-      if (cur === this.root) {
-        this.root = cur.right
-      }
-      // 4.2 删除的是左子节点
-      else if (cur.isLeft) {
-        cur.parent!.left = cur.right
-      } else {
-        cur.parent!.right = cur.right
-      }
-      // 4.3 删除的是右子节点
+      replaceNode = cur.right
     }
     // 5. 有两个子节点
     else {
       // 5.1 找到后继节点
       const successor = this.getSuccessor(cur)
+      replaceNode = successor
+    }
 
-      if (cur === this.root) {
-        this.root = successor
-      } else if (cur.isLeft) {
-        cur.parent!.left = successor
-      } else {
-        cur.parent!.right = successor
-      }
+    if (cur === this.root) {
+      this.root = replaceNode
+    } else if (cur.isLeft) {
+      cur.parent!.left = replaceNode
+    } else {
+      cur.parent!.right = replaceNode
     }
   }
 
