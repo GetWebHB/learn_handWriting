@@ -68,7 +68,7 @@ class BSTree<T> {
   }
 
   // 层序遍历
-  levelOredrTraverse() {
+  levelOrderTraverse() {
     if (!this.root) return
     const queue = [this.root]
 
@@ -273,7 +273,7 @@ bstree.insert(6)
 // bstree.preOrderTraverse()
 // bstree.inOrderTraverse()
 // bstree.postOrderTraverse()
-// bstree.levelOredrTraverse()
+// bstree.levelOrderTraverse()
 // bstree.print()
 // console.log(bstree.getMaxValue())
 // console.log(bstree.getMinValue())
