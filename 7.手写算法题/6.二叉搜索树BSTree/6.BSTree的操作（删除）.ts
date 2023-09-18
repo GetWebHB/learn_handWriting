@@ -106,12 +106,12 @@ class BSTree<T> {
   }
 
   // 搜索某个值
-  serchValue(val: T): boolean {
-    return !!this.serchNode(val)
+  searchValue(val: T): boolean {
+    return !!this.searchNode(val)
   }
 
   // currentNode/parentNode
-  serchNode(val: T): TreeNode<T> | null {
+  searchNode(val: T): TreeNode<T> | null {
     if (!this.root) return null
 
     let current: TreeNode<T> | null = this.root
@@ -165,7 +165,7 @@ class BSTree<T> {
     if (!this.root) return false
 
     // 获取当前被删除的节点
-    const cur = this.serchNode(val)
+    const cur = this.searchNode(val)
 
     // 2. 删除叶子节点 （节点度为0的）
     if (!cur?.left && !cur?.right) {
@@ -278,9 +278,9 @@ bstree.insert(6)
 // console.log(bstree.getMaxValue())
 // console.log(bstree.getMinValue())
 
-// console.log(bstree.serchValue(11))
-// console.log(bstree.serchValue(3))
-// console.log(bstree.serchValue(100))
+// console.log(bstree.searchValue(11))
+// console.log(bstree.searchValue(3))
+// console.log(bstree.searchValue(100))
 
 // bstree.remove(10)
 // bstree.remove(11)
