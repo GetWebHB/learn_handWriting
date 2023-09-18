@@ -143,7 +143,7 @@ class BSTree<T> {
     while (current) {
       successor = current
       current = current!.left
-      if (current) {
+      if (current) { // 没搞懂 待处理
         current.parent = successor
       }
     }
@@ -151,7 +151,7 @@ class BSTree<T> {
     // 左右子树上移的情况
     if (delNode.right !== successor) {
       // 后继节点后面还有值的情况
-      successor!.parent!.left = successor?.right ?? null
+      successor!.parent!.left = successor?.right ?? null // 没搞懂 待处理
       successor!.right = delNode.right
     }
     successor!.left = delNode.left
