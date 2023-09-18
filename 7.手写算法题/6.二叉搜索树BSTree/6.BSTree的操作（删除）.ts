@@ -136,6 +136,7 @@ class BSTree<T> {
     return current
   }
 
+  // 获取后继节点
   getSuccessor(delNode: TreeNode<T>): TreeNode<T> {
     let current = delNode!.right
     let successor: TreeNode<T> | null = null
@@ -143,15 +144,16 @@ class BSTree<T> {
     while (current) {
       successor = current
       current = current!.left
-      if (current) { // 没搞懂 待处理
-        current.parent = successor
+      if (current) {
+        current.parent = successor // 赋值该节点的父节点
       }
     }
 
+    // 如果后继节点 === 删除的有节点的右节点 是不需要处理上移右子树的
     // 左右子树上移的情况
     if (delNode.right !== successor) {
       // 后继节点后面还有值的情况
-      successor!.parent!.left = successor?.right ?? null // 没搞懂 待处理
+      successor!.parent!.left = successor?.right ?? null // 后继节点的父节点的左子树 = 后继节点的右子树
       successor!.right = delNode.right
     }
     successor!.left = delNode.left
@@ -289,10 +291,10 @@ bstree.insert(6)
 bstree.remove(3)
 bstree.remove(8)
 bstree.remove(25)
-bstree.print()
+// bstree.print()
 bstree.remove(5)
 bstree.remove(20)
-bstree.print()
+// bstree.print()
 // bstree.remove(7)
 bstree.remove(11)
 bstree.print()
