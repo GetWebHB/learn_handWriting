@@ -1,5 +1,5 @@
 class Node<T> {
-  constructor(public data: T) {}
+  constructor(public value: T) {}
 }
 
 export default Node

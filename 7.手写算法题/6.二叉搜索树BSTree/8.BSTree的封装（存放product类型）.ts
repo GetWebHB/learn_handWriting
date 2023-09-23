@@ -5,10 +5,10 @@ class TreeNode<T> extends Node<T> implements PrintableNode {
   left: TreeNode<T> | null = null
   right: TreeNode<T> | null = null
 
-  get value() {
-    const pro = this.data as Product
-    return `${pro.name}-${pro.price}`
-  }
+  // get value() {
+  //   const pro = this.value as Product
+  //   return `${pro.name}-${pro.price}`
+  // }
 }
 
 class BSTree<T> {
