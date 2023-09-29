@@ -14,16 +14,14 @@ class Heap<T> {
     this.length++
 
     let index = this.length - 1
-
     while (index > 0) {
       let parentIdx = Math.floor((index - 1) / 2)
       const flag = this.data[index] > this.data[parentIdx]
       if (!flag) break
+
       // 如果插入的元素 > 父元素 需要进行上滤操作
-      if (flag) {
-        this.swap(index, parentIdx)
-        index = parentIdx
-      }
+      this.swap(index, parentIdx)
+      index = parentIdx
     }
   }
 
