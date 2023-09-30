@@ -56,4 +56,5 @@ heap.insert(21)
 heap.insert(20)
 
 console.log(heap.data)
+
 export {}
