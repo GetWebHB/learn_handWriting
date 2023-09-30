@@ -1,7 +1,7 @@
 import { cbtPrint } from 'hy-algokit'
 
 class Heap<T> {
-  data: T[] = []
+  public data: T[] = []
 
   constructor(private isMax = true) {
     this.isMax = isMax
@@ -70,15 +70,15 @@ class Heap<T> {
     return top
   }
 
-  peek() {
+  peek(): T | undefined {
     return this.data[0]
   }
 
-  get size() {
+  get size(): number {
     return this.data.length
   }
 
-  isEmpty() {
+  isEmpty(): boolean {
     return !this.data.length
   }
 
@@ -89,23 +89,23 @@ class Heap<T> {
   }
 }
 
-const heap = new Heap<number>(false)
+// const heap = new Heap<number>(false)
 
-heap.insert(100)
-heap.insert(19)
-heap.insert(35)
-heap.insert(17)
-heap.insert(3)
-heap.insert(25)
-heap.insert(1)
-heap.insert(2)
-heap.insert(7)
-heap.insert(-7)
-heap.insert(10)
-cbtPrint(heap.data)
+// heap.insert(100)
+// heap.insert(19)
+// heap.insert(35)
+// heap.insert(17)
+// heap.insert(3)
+// heap.insert(25)
+// heap.insert(1)
+// heap.insert(2)
+// heap.insert(7)
+// heap.insert(-7)
+// heap.insert(10)
+// cbtPrint(heap.data)
 
-while (!heap.isEmpty()) {
-  console.log(heap.extract())
-}
+// while (!heap.isEmpty()) {
+//   console.log(heap.extract())
+// }
 
-export {}
+export { Heap }
