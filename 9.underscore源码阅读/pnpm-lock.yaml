@@ -1,0 +1,14 @@
+lockfileVersion: '6.0'
+
+dependencies:
+  underscore:
+    specifier: ^1.13.6
+    version: registry.npmmirror.com/underscore@1.13.6
+
+packages:
+
+  registry.npmmirror.com/underscore@1.13.6:
+    resolution: {integrity: sha512-+A5Sja4HP1M08MaXya7p5LvjuM7K6q/2EaC0+iovj/wOcMsTzMvDFbasi/oSapiwOlt252IqsKqPjCl7huKS0A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/underscore/-/underscore-1.13.6.tgz}
+    name: underscore
+    version: 1.13.6
+    dev: false
