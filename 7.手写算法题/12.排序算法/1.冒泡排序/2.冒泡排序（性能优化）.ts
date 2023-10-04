@@ -1,3 +1,4 @@
+import { measureSort } from 'hy-algokit'
 import { swap } from '../utils/swap'
 import testAlgoSortFn from '../utils/testAlgoSortFn'
 
@@ -20,6 +21,7 @@ function bubbleSort<T>(arr: T[]) {
   return arr
 }
 
-testAlgoSortFn<number>(bubbleSort)
+// testAlgoSortFn<number>(bubbleSort)
+measureSort(bubbleSort)
 
 export {}

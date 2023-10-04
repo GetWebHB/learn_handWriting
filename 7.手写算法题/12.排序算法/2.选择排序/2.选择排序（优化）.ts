@@ -1,3 +1,4 @@
+import { measureSort } from 'hy-algokit'
 import { swap } from '../utils/swap'
 import testAlgoSortFn from '../utils/testAlgoSortFn'
 
@@ -22,4 +23,6 @@ function selectionSort(arr: number[]) {
   return arr
 }
 
-testAlgoSortFn(selectionSort)
+// testAlgoSortFn(selectionSort)
+
+measureSort(selectionSort)
