@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        /* background: skyblue; */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 300 100 只是画布大小 可展示区域而已 -->
+    <canvas class="draw" width="300" height="100">not supper canvas</canvas>
+    <script>
+      const draw = document.querySelector('.draw')
+
+      if (draw.getContext) {
+        const context = draw.getContext('2d')
+        // 粉红色stroke
+        context.strokeStyle = 'pink'
+        context.strokeRect(10, 10, 50, 50)
+        context.lineCap = 'round'
+
+        // 透明色stroke
+        context.strokeStyle = 'rgba(0,0, 255, .1)'
+        context.strokeRect(30, 30, 50, 50)
+      }
+    </script>
+  </body>
+</html>

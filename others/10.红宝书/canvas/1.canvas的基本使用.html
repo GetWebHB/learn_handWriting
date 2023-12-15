@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="draw" width="300" height="100">not supper canvas</canvas>
+    <script>
+      const draw = document.querySelector('.draw')
+      const context = draw.getContext('2d')
+      console.log(context, `---`)
+    </script>
+  </body>
+</html>

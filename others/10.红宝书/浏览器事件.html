@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background: pink;
+        margin-top: 2000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      const boxEl = document.querySelector('.box')
+      boxEl.addEventListener('click', (e) => {
+        console.log(e.clientX, e.clientY) // 不考虑页面滚动 视口中的坐标
+        console.log(e.pageX, e.pageY) // 页面坐标
+        console.log(e.screenX, e.screenY) // 相对屏幕上的坐标
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="draw" width="300" height="100">not supper canvas</canvas>
+    <script>
+      const draw = document.querySelector('.draw')
+
+      // 1. 获取图像数据
+      const uri = draw.toDataURL('image/png')
+
+      // 2. 显示图片
+      const image = document.createElement('img')
+      image.src = uri
+      document.body.appendChild(image)
+    </script>
+  </body>
+</html>
