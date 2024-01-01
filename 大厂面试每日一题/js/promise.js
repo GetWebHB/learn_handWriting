@@ -14,9 +14,11 @@ class IPromise {
         this.STATUS = 'FULFILLED'
         this.value = value
 
-        for (let fn of this.onFulfilledFns) {
-          fn(this.value)
-        }
+        setTimeout(() => {
+          for (let fn of this.onFulfilledFns) {
+            fn(this.value)
+          }
+        }, 0)
       }
     }
     this.reject = (reason) => {
@@ -24,9 +26,11 @@ class IPromise {
         this.STATUS = 'REJECTED'
         this.reason = reason
 
-        for (let fn of this.onFulfilledFns) {
-          fn(this.reason)
-        }
+        setTimeout(() => {
+          for (let fn of this.onRejectedFns) {
+            fn(this.reason)
+          }
+        }, 0)
       }
     }
     executor(this.resolve, this.reject)
@@ -34,10 +38,11 @@ class IPromise {
 }
 
 const p1 = new IPromise((resolve, reject) => {
-  setTimeout(() => {
-    reject('REJ')
-    resolve('REJ')
-  }, 1000)
+  // setTimeout(() => {
+  //   reject('REJ')
+  //   resolve('REJ')
+  // }, 1000)
+  resolve('RES')
 })
 
 p1.then(
