@@ -3,33 +3,33 @@ class IPromise {
   onFulfilledFns = []
   onRejectedFns = []
 
-  resolve(value) {
-    if (this.STATUS === 'PENDING') {
-      this.STATUS = 'FULFILLED'
-      this.value = value
-
-      for (let fn of this.onFulfilledFns) {
-        fn(this.value)
-      }
-    }
-  }
-  reject(reason) {
-    if (this.STATUS === 'PENDING') {
-      this.STATUS = 'REJECTED'
-      this.reason = reason
-
-      for (let fn of this.onFulfilledFns) {
-        fn(this.reason)
-      }
-    }
-  }
   then(onfulfilled, onRejected) {
     this.onFulfilledFns.push(onfulfilled)
     this.onRejectedFns.push(onRejected)
   }
 
   constructor(executor) {
-    executor(this.resolve.bind(this), this.reject.bind(this))
+    this.resolve = (value) => {
+      if (this.STATUS === 'PENDING') {
+        this.STATUS = 'FULFILLED'
+        this.value = value
+
+        for (let fn of this.onFulfilledFns) {
+          fn(this.value)
+        }
+      }
+    }
+    this.reject = (reason) => {
+      if (this.STATUS === 'PENDING') {
+        this.STATUS = 'REJECTED'
+        this.reason = reason
+
+        for (let fn of this.onFulfilledFns) {
+          fn(this.reason)
+        }
+      }
+    }
+    executor(this.resolve, this.reject)
   }
 }
 
