@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .contariner {
+        /* flex布局 子盒子 align-items：normal -> 默认拉伸 */
+        /* display: flex; */
+        width: 200px;
+        height: 200px;
+        background: pink;
+      }
+      .box {
+        width: 100px;
+        /* height: 100%; */
+        background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contariner">
+      <div class="box"></div>
+    </div>
+    <script>
+      // 监听媒体查询
+      window.addEventListener('resize', () => {
+        const mt = window.matchMedia('(max-width:600px)')
+        console.log(mt)
+      })
+    </script>
+  </body>
+</html>
